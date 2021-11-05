@@ -1,4 +1,4 @@
-Shader "Unlit/teste"
+﻿Shader "Custom/Instancing"
 {
     Properties
     {
@@ -16,6 +16,7 @@ Shader "Unlit/teste"
             #pragma fragment frag
             // make fog work
             #pragma multi_compile_fog
+            #pragma multi_compile_instancing
 
             #include "UnityCG.cginc"
 
@@ -23,6 +24,7 @@ Shader "Unlit/teste"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                UNITY_VERTEX_INPUT_INSTANCE_ID // NUESTRO ID
             };
 
             struct v2f
@@ -38,6 +40,9 @@ Shader "Unlit/teste"
             v2f vert (appdata v)
             {
                 v2f o;
+
+                UNITY_SETUP_INSTANCE_ID(v);
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
