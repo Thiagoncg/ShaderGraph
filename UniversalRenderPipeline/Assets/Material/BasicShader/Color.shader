@@ -19,12 +19,12 @@ Shader"Custom/SoliColor"
                 #pragma vertex vertexShader
                 #pragma fragment fragmentShader
 
-                uniform fixed4 _Color
+                uniform fixed4 _Color;
 
                 //VERTEX INPUT
                 struct vertexInput
                 {
-                    fixed4 vertex : POSITION;       // object-space        
+                    fixed4 vertex : POSITION; 
                 };
 
                 //VERTEX OUTPUT
@@ -32,14 +32,14 @@ Shader"Custom/SoliColor"
                 {
                     fixed4 position : SV_POSITION;
                     fixed4 color : COLOR;
-                }
+                };
 
                 //VERTEX SHADER
                 vertexOutput vertexShader(vertexInput i)
                 {
                     vertexOutput o;
-                    o.position = UnityObjectClipPos(i.vertex);
-                    o.Color = _Color;
+                    o.position = UnityObjectToClipPos(i.vertex);
+                    o.color = _Color;
                     return o;
                 }
 
