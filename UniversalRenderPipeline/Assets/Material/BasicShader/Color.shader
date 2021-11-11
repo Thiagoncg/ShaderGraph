@@ -26,14 +26,12 @@ Shader"Custom/SoliColor"
                 {
                     fixed4 vertex : POSITION; 
                 };
-
                 //VERTEX OUTPUT
                 struct vertexOutput
                 {
                     fixed4 position : SV_POSITION;
                     fixed4 color : COLOR;
                 };
-
                 //VERTEX SHADER
                 vertexOutput vertexShader(vertexInput i)
                 {
@@ -42,7 +40,6 @@ Shader"Custom/SoliColor"
                     o.color = _Color;
                     return o;
                 }
-
                 //FRAGMENT SHADER
                 fixed4 fragmentShader (vertexOutput o) : SV_TARGET
                 {
@@ -51,6 +48,5 @@ Shader"Custom/SoliColor"
                 ENDCG
             }
         }
-
     fallback "Mobile/VertexLit"
 }
